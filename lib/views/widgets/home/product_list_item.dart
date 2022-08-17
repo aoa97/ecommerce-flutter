@@ -20,6 +20,7 @@ class ProductListItem extends StatelessWidget {
         children: [
           Stack(
             alignment: Alignment.topLeft,
+            clipBehavior: Clip.none,
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(8),
@@ -39,48 +40,32 @@ class ProductListItem extends StatelessWidget {
                     style: const TextStyle(fontSize: 11, color: Colors.white),
                   ),
                 ),
+              ),
+              Positioned(
+                bottom: -20,
+                right: 0,
+                child: SizedBox(
+                  width: size.width * 0.11,
+                  height: size.width * 0.11,
+                  child: Card(
+                    shape: const CircleBorder(),
+                    clipBehavior: Clip.antiAlias,
+                    child: IconButton(
+                        color: Colors.grey,
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.favorite_border,
+                          size: 18,
+                        )),
+                  ),
+                ),
               )
             ],
           ),
           const SizedBox(
             height: 8,
           ),
-          Row(
-            children: const [
-              Icon(
-                Icons.star,
-                size: 15,
-                color: Colors.amber,
-              ),
-              Icon(
-                Icons.star,
-                size: 15,
-                color: Colors.amber,
-              ),
-              Icon(
-                Icons.star,
-                size: 15,
-                color: Colors.amber,
-              ),
-              Icon(
-                Icons.star,
-                size: 15,
-                color: Colors.amber,
-              ),
-              Icon(
-                Icons.star,
-                size: 15,
-                color: Colors.amber,
-              ),
-              SizedBox(
-                width: 2.5,
-              ),
-              Text(
-                "(10)",
-                style: TextStyle(color: Colors.grey, fontSize: 10),
-              )
-            ],
-          ),
+          const RatingStars(),
           const SizedBox(
             height: 5,
           ),
@@ -107,6 +92,53 @@ class ProductListItem extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+}
+
+// TODO Refactor it
+class RatingStars extends StatelessWidget {
+  const RatingStars({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: const [
+        Icon(
+          Icons.star,
+          size: 15,
+          color: Colors.amber,
+        ),
+        Icon(
+          Icons.star,
+          size: 15,
+          color: Colors.amber,
+        ),
+        Icon(
+          Icons.star,
+          size: 15,
+          color: Colors.amber,
+        ),
+        Icon(
+          Icons.star,
+          size: 15,
+          color: Colors.amber,
+        ),
+        Icon(
+          Icons.star,
+          size: 15,
+          color: Colors.amber,
+        ),
+        SizedBox(
+          width: 2.5,
+        ),
+        Text(
+          "(10)",
+          style: TextStyle(color: Colors.grey, fontSize: 10),
+        )
+      ],
     );
   }
 }

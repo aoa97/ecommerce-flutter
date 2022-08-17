@@ -16,7 +16,7 @@ class Product {
     required this.price,
     required this.imageUrl,
     this.rate,
-    this.discount,
+    this.discount = 1,
   });
 }
 
