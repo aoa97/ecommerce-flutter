@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/utils/assets.dart';
 import 'package:ecommerce_app/utils/enums.dart';
-import 'package:ecommerce_app/views/widgets/main_button.dart';
-import 'package:ecommerce_app/views/widgets/social_button.dart';
+import 'package:ecommerce_app/views/widgets/ui/main_button.dart';
+import 'package:ecommerce_app/views/widgets/ui/social_button.dart';
 import 'package:provider/provider.dart';
 
 class AuthPage extends StatefulWidget {
@@ -71,7 +71,7 @@ class _AuthPageState extends State<AuthPage> {
                             children: [
                               Text(
                                 model.authFormType == AuthFormType.login ? "Login" : "Sign Up",
-                                style: Theme.of(context).textTheme.headline4,
+                                style: Theme.of(context).textTheme.headline1,
                               ),
                               const SizedBox(
                                 height: 70,

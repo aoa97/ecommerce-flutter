@@ -1,12 +1,11 @@
+import 'package:ecommerce_app/views/widgets/layout/horizontal_products.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/models/product.dart';
-import 'package:ecommerce_app/views/widgets/home/product_list_item.dart';
 
-class ProductList extends StatelessWidget {
+class HomeProducts extends StatelessWidget {
   final String title;
   final String description;
 
-  const ProductList({
+  const HomeProducts({
     Key? key,
     required this.title,
     required this.description,
@@ -26,10 +25,7 @@ class ProductList extends StatelessWidget {
                 children: [
                   Text(
                     title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium!
-                        .copyWith(color: Colors.black, fontWeight: FontWeight.w500),
+                    style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 34),
                   ),
                   TextButton(
                       onPressed: () {},
@@ -41,20 +37,14 @@ class ProductList extends StatelessWidget {
               ),
               Text(
                 description,
-                style: const TextStyle(color: Colors.grey),
+                style: Theme.of(context).textTheme.caption,
               ),
             ],
           ),
           const SizedBox(
             height: 16,
           ),
-          SizedBox(
-            height: 260,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: productsList.map((product) => ProductListItem(product)).toList(),
-            ),
-          ),
+          const HorizontalProducts()
         ],
       ),
     );

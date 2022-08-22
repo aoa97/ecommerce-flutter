@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/utils/assets.dart';
-import 'package:ecommerce_app/views/widgets/home/product_list.dart';
+import 'package:ecommerce_app/views/widgets/home/home_products.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -37,17 +37,14 @@ class HomePage extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                     child: Text(
                       "Street Clothes",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headlineLarge!
-                          .copyWith(color: Colors.white, fontWeight: FontWeight.w500),
+                      style: Theme.of(context).textTheme.headline1!.copyWith(color: Colors.white),
                     ),
                   )
                 ],
               ),
               const SizedBox(height: 8),
-              const ProductList(title: "Sale", description: "Super summer sale"),
-              const ProductList(title: "New", description: "You’ve never seen it before!"),
+              const HomeProducts(title: "Sale", description: "Super summer sale"),
+              const HomeProducts(title: "New", description: "You’ve never seen it before!"),
             ],
           ),
         ),

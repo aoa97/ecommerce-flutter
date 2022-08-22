@@ -15,7 +15,9 @@ class MainButton extends StatelessWidget {
       height: 48,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: ElevatedButton.styleFrom(primary: Theme.of(context).primaryColor),
+        style: ElevatedButton.styleFrom(
+            primary: Theme.of(context).primaryColor,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25))),
         child: loading
             ? const SizedBox(
                 width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white))
