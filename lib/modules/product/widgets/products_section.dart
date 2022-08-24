@@ -1,5 +1,5 @@
-import 'package:ecommerce_app/views/widgets/layout/horizontal_products.dart';
 import 'package:flutter/material.dart';
+import 'package:ecommerce_app/widgets/layout/horizontal_product_list.dart';
 
 class ProductsSection extends StatelessWidget {
   const ProductsSection({
@@ -23,7 +23,7 @@ class ProductsSection extends StatelessWidget {
         const SizedBox(
           height: 12,
         ),
-        const HorizontalProducts()
+        const HorizontalProductList()
       ],
     );
   }

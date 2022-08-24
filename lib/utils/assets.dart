@@ -5,7 +5,15 @@ class AppAssets {
 
   // Products
   static const product_1 =
-      "https://images.unsplash.com/photo-1607345366928-199ea26cfe3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8c2hpcnR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=50";
+      "https://images.squarespace-cdn.com/content/v1/61dcd32b3fb8bb4b5af9b560/1641939739289-BKS04XVQ0XH5LSL079DL/image-asset.jpeg";
+  static const product_2 =
+      "https://images.squarespace-cdn.com/content/v1/61dcd32b3fb8bb4b5af9b560/1641939735117-X5O2E2RZRXBONTTWNJFU/image-asset.jpeg";
+  static const product_3 =
+      "https://images.squarespace-cdn.com/content/v1/61dcd32b3fb8bb4b5af9b560/1641939736132-PI3YEIX48GWU8TUA92UB/image-asset.jpeg";
+  static const product_4 =
+      "https://images.squarespace-cdn.com/content/v1/61dcd32b3fb8bb4b5af9b560/8c640b68-7c6d-4957-91b3-896d76b44b76/quince-menswear.jpg";
+  static const product_5 =
+      "https://images.squarespace-cdn.com/content/v1/61dcd32b3fb8bb4b5af9b560/cf07c20c-953d-4eab-b959-ce07809d39b7/outerknown-menswear.jpg";
 
   // SVG Icons
   static const facebookIcon = 'assets/images/facebook-svgrepo-com.svg';

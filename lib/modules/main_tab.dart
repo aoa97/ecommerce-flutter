@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/views/pages/cart_page.dart';
-import 'package:ecommerce_app/views/pages/favorites_page.dart';
-import 'package:ecommerce_app/views/pages/home_page.dart';
-import 'package:ecommerce_app/views/pages/profile_page.dart';
-import 'package:ecommerce_app/views/pages/shop_page.dart';
+import 'package:ecommerce_app/modules/cart/cart_page.dart';
+import 'package:ecommerce_app/modules/favorites/favorites_page.dart';
+import 'package:ecommerce_app/modules/home/home_page.dart';
+import 'package:ecommerce_app/modules/profile/profile_page.dart';
+import 'package:ecommerce_app/modules/shop/shop_page.dart';
 
 class MainTab extends StatefulWidget {
   const MainTab({Key? key}) : super(key: key);

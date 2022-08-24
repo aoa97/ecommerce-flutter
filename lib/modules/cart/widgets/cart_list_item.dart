@@ -1,11 +1,11 @@
-import 'package:ecommerce_app/views/widgets/ui/qty_counter.dart';
+import 'package:ecommerce_app/widgets/ui/qty_counter.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/models/product.dart';
+import 'package:ecommerce_app/models/product_model.dart';
 
-class CartItem extends StatelessWidget {
+class CartListItem extends StatelessWidget {
   final Product item;
 
-  const CartItem(
+  const CartListItem(
     this.item, {
     Key? key,
   }) : super(key: key);
