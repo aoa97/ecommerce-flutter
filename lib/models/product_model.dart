@@ -11,6 +11,9 @@ class Product {
   final bool isFavorite;
   final List<String> sizes;
   final List<String> colors;
+  final int? qty;
+  final String? selColor;
+  final String? selSize;
 
   Product({
     required this.id,
@@ -23,6 +26,9 @@ class Product {
     required this.colors,
     this.rate,
     this.discount = 1,
+    this.qty,
+    this.selColor,
+    this.selSize,
   });
 }
 

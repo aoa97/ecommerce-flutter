@@ -17,13 +17,19 @@ class DropDownComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
+      validator: (val) => val!.isEmpty ? "Please choose a value" : null,
       value: null,
+      isDense: false,
       hint: Text(hint),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8.0),
           borderSide: const BorderSide(color: Colors.grey, width: 0.4),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.0),
+          borderSide: const BorderSide(color: Colors.red, width: 0.4),
         ),
       ),
       isExpanded: true,

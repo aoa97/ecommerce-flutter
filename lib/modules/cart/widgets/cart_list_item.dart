@@ -51,7 +51,7 @@ class CartListItem extends StatelessWidget {
                                 style: Theme.of(context).textTheme.caption,
                               ),
                               Text(
-                                "Black",
+                                item.selColor!,
                                 style:
                                     Theme.of(context).textTheme.headline3!.copyWith(fontSize: 11),
                               )
@@ -63,7 +63,7 @@ class CartListItem extends StatelessWidget {
                                 style: Theme.of(context).textTheme.caption,
                               ),
                               Text(
-                                "M",
+                                item.selSize!,
                                 style:
                                     Theme.of(context).textTheme.headline3!.copyWith(fontSize: 11),
                               )
@@ -94,7 +94,7 @@ class CartListItem extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Counter(),
+                      Counter(item.qty!),
                       Text(
                         "${item.price.round()}\$",
                         style: Theme.of(context).textTheme.bodyText1,

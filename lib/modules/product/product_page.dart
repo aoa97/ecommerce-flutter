@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/providers/cart_provider.dart';
 import 'package:ecommerce_app/services/db_services.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/models/product_model.dart';
@@ -6,8 +7,10 @@ import 'package:ecommerce_app/widgets/ui/dropdown_component.dart';
 import 'package:ecommerce_app/widgets/ui/fav_button.dart';
 import 'package:ecommerce_app/widgets/ui/main_button.dart';
 import 'package:ecommerce_app/widgets/ui/rating_stars.dart';
+import 'package:provider/provider.dart';
 import 'package:skeletons/skeletons.dart';
 
+// TODO: Refactor
 class ProductPage extends StatefulWidget {
   final String productId;
 
@@ -19,6 +22,7 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   final db = DBServices.instance;
+  final _formKey = GlobalKey<FormState>();
   var _size = '';
   var _color = '';
 
@@ -29,6 +33,27 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    final cart = Provider.of<CartProvider>(context, listen: false);
+
+    _addToCart(id) {
+      if (_formKey.currentState!.validate()) {
+        cart.addToCart(id, _color, _size);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Row(children: [
+              Icon(Icons.check_circle, color: Theme.of(context).primaryColor),
+              const SizedBox(
+                width: 16,
+              ),
+              Text(
+                "The product has been added to cart",
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              )
+            ]),
+            backgroundColor: Colors.white));
+      } else {
+        print("error");
+      }
+    }
 
     return StreamBuilder(
       stream: db.getProductById(widget.productId),
@@ -55,32 +80,35 @@ class _ProductPageState extends State<ProductPage> {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: DropDownComponent(
-                                list: product.sizes,
-                                hint: "Size",
-                                value: _size,
-                                onChanged: (value) => setState(() => _size = value!),
-                              ),
-                            ),
-                            const SizedBox(width: 24),
-                            Expanded(
+                      Form(
+                        key: _formKey,
+                        child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
                                 child: DropDownComponent(
-                              list: product.colors,
-                              hint: "Color",
-                              value: _color,
-                              onChanged: (value) => setState(() => _color = value!),
-                            )),
-                            const SizedBox(width: 24),
-                            FavButton(
-                              isActive: product.isFavorite,
-                              onPressed: () => _toggleFavorite(product),
-                            )
-                          ]),
+                                  list: product.sizes,
+                                  hint: "Size",
+                                  value: _size,
+                                  onChanged: (value) => _size = value!,
+                                ),
+                              ),
+                              const SizedBox(width: 24),
+                              Expanded(
+                                  child: DropDownComponent(
+                                list: product.colors,
+                                hint: "Color",
+                                value: _color,
+                                onChanged: (value) => _color = value!,
+                              )),
+                              const SizedBox(width: 24),
+                              FavButton(
+                                isActive: product.isFavorite,
+                                onPressed: () => _toggleFavorite(product),
+                              )
+                            ]),
+                      ),
                       const SizedBox(height: 22),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -149,7 +177,7 @@ class _ProductPageState extends State<ProductPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                 child: MainButton(
                   text: "ADD TO CARD",
-                  onPressed: () {},
+                  onPressed: () => _addToCart(product.id),
                 ),
               ),
             ),

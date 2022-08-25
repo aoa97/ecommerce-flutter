@@ -3,7 +3,9 @@ import 'package:ecommerce_app/models/product_model.dart';
 import 'package:ecommerce_app/modules/cart/widgets/cart_list_item.dart';
 
 class CartList extends StatelessWidget {
-  const CartList({
+  final List<Product> list;
+  const CartList(
+    this.list, {
     Key? key,
   }) : super(key: key);
 
@@ -11,9 +13,9 @@ class CartList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       shrinkWrap: true,
-      itemCount: productsList.length,
+      itemCount: list.length,
       separatorBuilder: (_, __) => const SizedBox(height: 24),
-      itemBuilder: (_, index) => CartListItem(productsList[index]),
+      itemBuilder: (_, index) => CartListItem(list[index]),
     );
   }
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Counter extends StatelessWidget {
-  const Counter({
+  final int value;
+
+  const Counter(
+    this.value, {
     Key? key,
   }) : super(key: key);
 
@@ -23,7 +26,7 @@ class Counter extends StatelessWidget {
             )),
         const SizedBox(width: 16),
         Text(
-          "1",
+          value.toString(),
           style: Theme.of(context).textTheme.headline3!.copyWith(fontSize: 14),
         ),
         const SizedBox(width: 16),
