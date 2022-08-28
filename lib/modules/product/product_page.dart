@@ -23,8 +23,8 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   final db = DBServices.instance;
   final _formKey = GlobalKey<FormState>();
-  var _size = '';
-  var _color = '';
+  late var _size = '';
+  late var _color = '';
 
   _toggleFavorite(product) {
     db.updateProduct(product.id, {'isFavorite': !product.isFavorite});
@@ -35,9 +35,10 @@ class _ProductPageState extends State<ProductPage> {
     final size = MediaQuery.of(context).size;
     final cart = Provider.of<CartProvider>(context, listen: false);
 
-    _addToCart(id) {
+    _addToCart(product) {
       if (_formKey.currentState!.validate()) {
-        cart.addToCart(id, _color, _size);
+        cart.addToCart(product.id, product.title, product.price, _color, _size);
+
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Row(children: [
               Icon(Icons.check_circle, color: Theme.of(context).primaryColor),
@@ -60,6 +61,8 @@ class _ProductPageState extends State<ProductPage> {
       builder: (_, snap) {
         if (snap.connectionState == ConnectionState.active) {
           final product = snap.data as Product;
+          _size = product.sizes[0];
+          _color = product.colors[0];
 
           return Scaffold(
             appBar: AppBar(
@@ -73,7 +76,7 @@ class _ProductPageState extends State<ProductPage> {
                   product.imageUrl,
                   fit: BoxFit.cover,
                   width: double.infinity,
-                  height: size.height * .55,
+                  height: size.height * .45,
                   alignment: Alignment.topCenter,
                 ),
                 Padding(
@@ -89,7 +92,6 @@ class _ProductPageState extends State<ProductPage> {
                               Expanded(
                                 child: DropDownComponent(
                                   list: product.sizes,
-                                  hint: "Size",
                                   value: _size,
                                   onChanged: (value) => _size = value!,
                                 ),
@@ -98,7 +100,6 @@ class _ProductPageState extends State<ProductPage> {
                               Expanded(
                                   child: DropDownComponent(
                                 list: product.colors,
-                                hint: "Color",
                                 value: _color,
                                 onChanged: (value) => _color = value!,
                               )),
@@ -135,7 +136,7 @@ class _ProductPageState extends State<ProductPage> {
                             ],
                           ),
                           Text(
-                            "\$19.99",
+                            '\$${product.price}',
                             style: Theme.of(context).textTheme.headline2,
                           )
                         ],
@@ -177,7 +178,7 @@ class _ProductPageState extends State<ProductPage> {
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
                 child: MainButton(
                   text: "ADD TO CARD",
-                  onPressed: () => _addToCart(product.id),
+                  onPressed: () => _addToCart(product),
                 ),
               ),
             ),
@@ -191,7 +192,7 @@ class _ProductPageState extends State<ProductPage> {
                 SkeletonAvatar(
                     style: SkeletonAvatarStyle(
                   width: double.infinity,
-                  height: size.height * .55,
+                  height: size.height * .45,
                 )),
                 Expanded(
                     child: Padding(

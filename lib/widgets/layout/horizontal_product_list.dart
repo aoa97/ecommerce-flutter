@@ -10,10 +10,11 @@ class HorizontalProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final productsStream = DBServices.instance.getProducts;
 
     return SizedBox(
-      height: 260,
+      height: size.height > 700 ? 275 : 230,
       child: StreamBuilder(
           stream: productsStream(),
           builder: (_, AsyncSnapshot snap) {

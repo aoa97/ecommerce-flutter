@@ -1,16 +1,8 @@
 import 'package:flutter/foundation.dart';
-
-class CartItem {
-  final String id;
-  final int qty;
-  final String size;
-  final String color;
-
-  CartItem({required this.id, required this.qty, required this.color, required this.size});
-}
+import 'package:ecommerce_app/models/cart_Item_model.dart';
 
 class CartProvider with ChangeNotifier {
-  final Map<String, CartItem> _cart = {}; // {productId, qty}
+  final Map<String, CartItem> _cart = {}; // {productId, CartItem}
 
   get items => {..._cart};
 
@@ -22,15 +14,35 @@ class CartProvider with ChangeNotifier {
     return total;
   }
 
-  addToCart(String productId, String color, String size) {
+  get totalAmount {
+    double total = 0;
+    _cart.forEach((productId, item) => total += item.qty * item.price);
+    return total;
+  }
+
+  addToCart(String productId, String title, double price, String color, String size) {
     final exists = _cart.containsKey(productId);
     if (exists) {
       _cart.update(productId, (currentItem) {
-        return CartItem(id: currentItem.id, qty: currentItem.qty + 1, color: color, size: size);
+        return CartItem(
+          id: currentItem.id,
+          title: currentItem.title,
+          price: currentItem.price,
+          qty: currentItem.qty + 1,
+          color: color,
+          size: size,
+        );
       });
     } else {
       _cart.putIfAbsent(productId, () {
-        return CartItem(id: DateTime.now().toIso8601String(), qty: 1, color: color, size: size);
+        return CartItem(
+          id: DateTime.now().toIso8601String(),
+          qty: 1,
+          title: title,
+          price: price,
+          color: color,
+          size: size,
+        );
       });
     }
     notifyListeners();
@@ -44,10 +56,13 @@ class CartProvider with ChangeNotifier {
     if (_cart[productId]!.qty > 1) {
       _cart.update(productId, (currentItem) {
         return CartItem(
-            id: currentItem.id,
-            qty: currentItem.qty - 1,
-            color: currentItem.color,
-            size: currentItem.size);
+          id: currentItem.id,
+          qty: currentItem.qty - 1,
+          title: currentItem.title,
+          price: currentItem.price,
+          color: currentItem.color,
+          size: currentItem.size,
+        );
       });
     } else {
       _cart.remove(productId);

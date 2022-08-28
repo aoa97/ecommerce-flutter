@@ -96,7 +96,7 @@ class CartListItem extends StatelessWidget {
                     children: [
                       Counter(item.qty!),
                       Text(
-                        "${item.price.round()}\$",
+                        "${item.price}\$",
                         style: Theme.of(context).textTheme.bodyText1,
                       ),
                     ],

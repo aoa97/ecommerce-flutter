@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce_app/models/cart_Item_model.dart';
 import 'package:ecommerce_app/models/product_model.dart';
-import 'package:ecommerce_app/providers/cart_provider.dart';
 
 class DBServices {
   DBServices._();

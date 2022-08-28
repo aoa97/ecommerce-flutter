@@ -2,25 +2,18 @@ import 'package:flutter/material.dart';
 
 class DropDownComponent extends StatelessWidget {
   final List<String> list;
-  final String hint;
   final String value;
   final void Function(String?)? onChanged;
 
   const DropDownComponent(
-      {required this.onChanged,
-      required this.list,
-      required this.hint,
-      required this.value,
-      Key? key})
+      {required this.onChanged, required this.list, required this.value, Key? key})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
       validator: (val) => val!.isEmpty ? "Please choose a value" : null,
-      value: null,
-      isDense: false,
-      hint: Text(hint),
+      value: list[0],
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 12),
         enabledBorder: OutlineInputBorder(
