@@ -11,8 +11,8 @@ class FavButton extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return SizedBox(
-      width: size.width * 0.11,
-      height: size.width * 0.11,
+      width: size.width * 0.12,
+      height: size.width * 0.12,
       child: Card(
         shape: const CircleBorder(),
         clipBehavior: Clip.antiAlias,
@@ -21,7 +21,7 @@ class FavButton extends StatelessWidget {
             onPressed: onPressed,
             icon: Icon(
               isActive! ? Icons.favorite : Icons.favorite_border,
-              size: 18,
+              size: 19,
             )),
       ),
     );

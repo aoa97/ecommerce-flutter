@@ -1,11 +1,11 @@
-import 'package:ecommerce_app/models/cart_item_model.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/modules/cart/widgets/cart_list_item.dart';
+import 'package:ecommerce_app/modules/favorites/widgets/favorites_list_item.dart';
+import 'package:ecommerce_app/models/product_model.dart';
 
-class CartList extends StatelessWidget {
-  final List<CartItem>? list;
+class FavoritesList extends StatelessWidget {
+  final List<Product>? list;
 
-  const CartList(
+  const FavoritesList(
     this.list, {
     Key? key,
   }) : super(key: key);
@@ -16,7 +16,7 @@ class CartList extends StatelessWidget {
       shrinkWrap: true,
       itemCount: list!.length,
       separatorBuilder: (_, __) => const SizedBox(height: 24),
-      itemBuilder: (_, index) => CartListItem(list![index]),
+      itemBuilder: (_, index) => FavoritesListItem(list![index]),
     );
   }
 }

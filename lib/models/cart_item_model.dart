@@ -1,27 +1,45 @@
 class CartItem {
-  final String id;
-  final String title;
-  final double price;
+  final String? id;
   final int qty;
+  final String productId;
+  final String title;
+  final String imageUrl;
+  final double price;
   final String size;
   final String color;
 
   CartItem(
-      {required this.id,
+      {this.id,
+      this.qty = 1,
+      required this.productId,
       required this.title,
+      required this.imageUrl,
       required this.price,
-      required this.qty,
       required this.color,
       required this.size});
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id,
-      'title': title,
-      'price': price,
       'qty': qty,
+      'productId': productId,
+      'title': title,
+      'imageUrl': imageUrl,
+      'price': price,
       'size': size,
       'color': color,
     };
+  }
+
+  factory CartItem.fromMap(Map<String, dynamic> map, String documentId) {
+    return CartItem(
+      id: documentId,
+      productId: map['productId'] ?? '',
+      qty: map['qty'] ?? 0,
+      title: map['title'] ?? '',
+      imageUrl: map['imageUrl'] ?? '',
+      price: map['price'] ?? 0,
+      color: map['color'] ?? '',
+      size: map['size'] ?? '',
+    );
   }
 }

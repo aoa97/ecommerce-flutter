@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
-class ProductListSkeleton extends StatelessWidget {
-  const ProductListSkeleton({
+class HProductSkeleton extends StatelessWidget {
+  const HProductSkeleton({
     Key? key,
   }) : super(key: key);
 

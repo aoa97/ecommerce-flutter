@@ -1,29 +1,25 @@
 import 'package:ecommerce_app/models/product_model.dart';
-import 'package:ecommerce_app/services/db_services.dart';
 import 'package:ecommerce_app/utils/routes.dart';
 import 'package:ecommerce_app/widgets/ui/fav_button.dart';
 import 'package:ecommerce_app/widgets/ui/rating_stars.dart';
 import 'package:flutter/material.dart';
 
-class ProductListItem extends StatelessWidget {
+class HProductItem extends StatelessWidget {
   final Product product;
 
-  const ProductListItem(
+  const HProductItem(
     this.product, {
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final db = DBServices.instance;
     final size = MediaQuery.of(context).size;
 
-    _toggleFavorite() {
-      db.updateProduct(product.id, {'isFavorite': !product.isFavorite});
-    }
+    _toggleFavorite() {}
 
     _navigateToDetails() {
-      Navigator.pushNamed(context, AppRoutes.productPageRoute, arguments: product.id);
+      Navigator.pushNamed(context, AppRoutes.productPageRoute, arguments: product);
     }
 
     return InkWell(
@@ -84,7 +80,7 @@ class ProductListItem extends StatelessWidget {
             height: 5,
           ),
           Text(
-            size.height.toString(),
+            product.category,
             style: const TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
           ),
           const SizedBox(

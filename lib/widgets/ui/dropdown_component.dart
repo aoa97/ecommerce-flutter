@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 class DropDownComponent extends StatelessWidget {
   final List<String> list;
-  final String value;
   final void Function(String?)? onChanged;
 
-  const DropDownComponent(
-      {required this.onChanged, required this.list, required this.value, Key? key})
+  const DropDownComponent({required this.onChanged, required this.list, Key? key})
       : super(key: key);
 
   @override

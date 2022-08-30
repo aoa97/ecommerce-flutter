@@ -15,6 +15,9 @@ class AppAssets {
   static const product_5 =
       "https://images.squarespace-cdn.com/content/v1/61dcd32b3fb8bb4b5af9b560/cf07c20c-953d-4eab-b959-ce07809d39b7/outerknown-menswear.jpg";
 
+  static const profileAvatar =
+      'https://media.istockphoto.com/photos/young-handsome-indian-man-wearing-tshirt-over-isolated-red-background-picture-id1167771770?b=1&k=20&m=1167771770&s=170667a&w=0&h=BvwrZ2feVbqd8tp3eAJn8XcGBVgL_WC5LaLf0ybg-Ss=';
+
   // SVG Icons
   static const facebookIcon = 'assets/images/facebook-svgrepo-com.svg';
   static const googleIcon = 'assets/images/google-svgrepo-com.svg';

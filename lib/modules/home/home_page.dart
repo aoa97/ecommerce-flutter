@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/services/db_services.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/utils/assets.dart';
 import 'package:ecommerce_app/modules/home/widgets/home_products.dart';
@@ -9,13 +8,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final db = DBServices.instance;
-
-    addProduct() {}
 
     return Scaffold(
-      floatingActionButton:
-          FloatingActionButton(onPressed: addProduct, child: const Icon(Icons.add)),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(

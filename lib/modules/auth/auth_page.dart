@@ -22,9 +22,9 @@ class _AuthPageState extends State<AuthPage> {
   final _nameFoucsNode = FocusNode();
   final _emailFoucsNode = FocusNode();
   final _passwordFoucsNode = FocusNode();
-  final req = AuthServices.instance;
   var _authType = AuthFormType.login;
   var _loading = false;
+  final req = AuthServices.instance;
 
   _submitForm() async {
     _nameFoucsNode.unfocus();
