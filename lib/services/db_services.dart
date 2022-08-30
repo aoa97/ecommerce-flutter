@@ -22,7 +22,6 @@ class DBServices {
 
   Future<void> updateData({required String path, required Map<String, dynamic> data}) async {
     final ref = _fireStore.doc(path);
-    print(path);
     await ref.update(data);
   }
 
@@ -69,6 +68,7 @@ class DBServices {
     });
   }
 
+// TODO: Move to controller
   Stream<List<Product>> getProducts() {
     final ref = _fireStore.collection('products');
     final snaps = ref.snapshots();
@@ -82,7 +82,6 @@ class DBServices {
                 price: doc.data()['rate'],
                 discount: doc.data()['discount'],
                 rate: doc.data()['rate'],
-                isFavorite: doc.data()['isFavorite'],
                 sizes: List.from(doc.data()['sizes']),
                 colors: List.from(doc.data()['colors']),
               ))

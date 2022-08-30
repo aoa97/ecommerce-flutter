@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/controllers/db_controller.dart';
 import 'package:ecommerce_app/models/product_model.dart';
 import 'package:ecommerce_app/utils/routes.dart';
 import 'package:ecommerce_app/widgets/ui/fav_button.dart';
@@ -16,7 +17,9 @@ class HProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    _toggleFavorite() {}
+    _toggleFavorite() {
+      DB.instance.toggleFavorite(product.id);
+    }
 
     _navigateToDetails() {
       Navigator.pushNamed(context, AppRoutes.productPageRoute, arguments: product);

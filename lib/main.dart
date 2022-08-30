@@ -1,9 +1,8 @@
 import 'dart:io';
-
-import 'package:ecommerce_app/http_overrides.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/theme/palette.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:ecommerce_app/http_overrides.dart';
+import 'package:ecommerce_app/theme/palette.dart';
 import 'package:ecommerce_app/utils/routes.dart';
 import 'package:ecommerce_app/utils/routing.dart';
 

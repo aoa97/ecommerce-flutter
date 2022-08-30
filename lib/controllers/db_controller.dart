@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/models/cart_item_model.dart';
 import 'package:ecommerce_app/services/auth_services.dart';
 import 'package:ecommerce_app/services/db_services.dart';
@@ -28,5 +29,11 @@ class DB {
         builder: (Map<String, dynamic>? data, String documentId) {
           return CartItem.fromMap(data!, documentId);
         });
+  }
+
+  Future<void> toggleFavorite(String productId) async {
+    await db.updateData(path: '/users/$uid', data: {
+      'favorites': FieldValue.arrayUnion([productId])
+    });
   }
 }

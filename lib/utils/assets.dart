@@ -18,6 +18,16 @@ class AppAssets {
   static const profileAvatar =
       'https://media.istockphoto.com/photos/young-handsome-indian-man-wearing-tshirt-over-isolated-red-background-picture-id1167771770?b=1&k=20&m=1167771770&s=170667a&w=0&h=BvwrZ2feVbqd8tp3eAJn8XcGBVgL_WC5LaLf0ybg-Ss=';
 
+  // Categories
+  static const newCategory =
+      'https://images.unsplash.com/photo-1532453288672-3a27e9be9efd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=50';
+  static const newShirt =
+      'https://images.unsplash.com/photo-1603251579431-8041402bdeda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=50';
+  static const newTShirt =
+      'https://images.unsplash.com/photo-1523381294911-8d3cead13475?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=50';
+  static const newPullover =
+      'https://images.unsplash.com/photo-1602706294170-1fed8eecd9f9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=50';
+
   // SVG Icons
   static const facebookIcon = 'assets/images/facebook-svgrepo-com.svg';
   static const googleIcon = 'assets/images/google-svgrepo-com.svg';

@@ -18,7 +18,7 @@ class _MainTabState extends State<MainTab> {
 
   final List<Map<String, dynamic>> _pages = [
     {'page': const HomePage(), 'title': null},
-    {'page': const ShopPage(), 'title': 'Categories'},
+    {'page': const ShopPage(), 'title': null},
     {'page': const CartPage(), 'title': null},
     {'page': const FavoritesPage(), 'title': null},
     {'page': const ProfilePage(), 'title': null},
