@@ -11,7 +11,7 @@ class CategoryCards extends StatelessWidget {
     {'title': 'New', 'imageUrl': AppAssets.newCategory},
     {'title': 'Shirt', 'imageUrl': AppAssets.newShirt},
     {'title': 'T-Shirt', 'imageUrl': AppAssets.newTShirt},
-    {'title': 'Bullover', 'imageUrl': AppAssets.newPullover},
+    {'title': 'Pullover', 'imageUrl': AppAssets.newPullover},
   ];
 
   @override
@@ -33,7 +33,10 @@ class CategoryCards extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 23),
                     child: Text(
                       cat['title']!,
-                      style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 18),
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline2!
+                          .copyWith(fontSize: 18),
                     ),
                   )),
                   Expanded(

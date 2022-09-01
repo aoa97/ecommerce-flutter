@@ -58,7 +58,7 @@ class _ProductFormState extends State<ProductForm> {
               onChanged: (value) => _selAttributes(Attribute.color, value),
             )),
             const SizedBox(width: 24),
-            FavButton(isActive: widget.product.isFavorite, onPressed: () => {})
+            FavButton(isActive: false, onPressed: () => {})
           ]),
     );
   }

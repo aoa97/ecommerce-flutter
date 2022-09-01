@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/modules/main_tab.dart';
+import 'package:ecommerce_app/providers/user_provider.dart';
 import 'package:ecommerce_app/services/auth_services.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/modules/auth/auth_page.dart';
+import 'package:provider/provider.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -15,8 +17,10 @@ class LandingPage extends StatelessWidget {
         builder: (_, snap) {
           if (snap.connectionState == ConnectionState.active) {
             if (auth.currentUser != null) {
-              // auth.logout();
-              return const MainTab();
+              return ChangeNotifierProvider(
+                create: (_) => UserProvider(),
+                child: const MainTab(),
+              );
             }
             return const AuthPage();
           }

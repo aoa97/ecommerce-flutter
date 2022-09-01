@@ -9,7 +9,8 @@ import 'package:ecommerce_app/utils/routing.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  HttpOverrides.global = PostHttpOverrides(); // Fix handshake exception on old devices
+  HttpOverrides.global =
+      PostHttpOverrides(); // Fix handshake exception on older devices
   runApp(const MyApp());
 }
 
@@ -34,11 +35,24 @@ class MyApp extends StatelessWidget {
             foregroundColor: Palette.black,
           ),
           textTheme: const TextTheme(
-            headline1: TextStyle(fontWeight: FontWeight.w700, fontSize: 34, color: Palette.black),
-            headline2: TextStyle(fontWeight: FontWeight.w600, fontSize: 24, color: Palette.black),
-            headline3: TextStyle(fontWeight: FontWeight.w500, fontSize: 18, color: Palette.black),
-            headline4: TextStyle(fontWeight: FontWeight.w400, fontSize: 16, color: Palette.black),
-            caption: TextStyle(fontWeight: FontWeight.w500, fontSize: 11, color: Palette.grey),
+            headline1: TextStyle(
+                fontWeight: FontWeight.w700,
+                fontSize: 34,
+                color: Palette.black),
+            headline2: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 24,
+                color: Palette.black),
+            headline3: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 18,
+                color: Palette.black),
+            headline4: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 16,
+                color: Palette.black),
+            caption: TextStyle(
+                fontWeight: FontWeight.w500, fontSize: 11, color: Palette.grey),
             bodyText1: TextStyle(fontSize: 14, color: Palette.black),
           ),
           inputDecorationTheme: InputDecorationTheme(

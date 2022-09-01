@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce_app/models/cart_item_model.dart';
 import 'package:ecommerce_app/models/product_model.dart';
 
 class DBServices {
@@ -9,8 +8,11 @@ class DBServices {
 
   final _fireStore = FirebaseFirestore.instance;
 
-  Future<void> setData(
-      {required String path, required Map<String, dynamic> data, bool auto = false}) async {
+  Future<void> setData({
+    required String path,
+    required Map<String, dynamic> data,
+    bool auto = false,
+  }) async {
     if (auto) {
       final ref = _fireStore.collection(path);
       await ref.add(data);
@@ -20,15 +22,27 @@ class DBServices {
     }
   }
 
-  Future<void> updateData({required String path, required Map<String, dynamic> data}) async {
+  Future<void> updateData({
+    required String path,
+    required Map<String, dynamic> data,
+  }) async {
     final ref = _fireStore.doc(path);
     await ref.update(data);
   }
 
-  Future<List<CartItem>> getData(String path) async {
+  Future<List> getColDocs({
+    required String path,
+    required Function(Map<String, dynamic> data, String id) builder,
+  }) async {
     final ref = _fireStore.collection(path);
     final res = await ref.get();
-    return res.docs.map((doc) => CartItem.fromMap(doc.data(), doc.id)).toList();
+    return res.docs.map((doc) => builder(doc.data(), doc.id)).toList();
+  }
+
+  Future<Map<String, dynamic>> getDocData(String path) async {
+    final ref = _fireStore.doc(path);
+    final res = await ref.get();
+    return {'id': res.id, 'data': res.data()};
   }
 
   Stream<T> documentsStream<T>({

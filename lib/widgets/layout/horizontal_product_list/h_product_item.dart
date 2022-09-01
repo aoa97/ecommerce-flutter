@@ -22,7 +22,8 @@ class HProductItem extends StatelessWidget {
     }
 
     _navigateToDetails() {
-      Navigator.pushNamed(context, AppRoutes.productPageRoute, arguments: product);
+      Navigator.pushNamed(context, AppRoutes.productPageRoute,
+          arguments: product);
     }
 
     return InkWell(
@@ -57,7 +58,7 @@ class HProductItem extends StatelessWidget {
                 bottom: -20,
                 right: 0,
                 child: FavButton(
-                  isActive: product.isFavorite,
+                  isActive: false, // TODO: Add dynamic val
                   onPressed: _toggleFavorite,
                 ),
               )
@@ -84,14 +85,17 @@ class HProductItem extends StatelessWidget {
           ),
           Text(
             product.category,
-            style: const TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
+            style: const TextStyle(
+                color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
           ),
           const SizedBox(
             height: 5,
           ),
           Text(
             '${product.price.round().toString()}\$',
-            style: TextStyle(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w500),
+            style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontWeight: FontWeight.w500),
           )
         ],
       ),

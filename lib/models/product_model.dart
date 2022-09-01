@@ -1,19 +1,15 @@
 import 'package:ecommerce_app/utils/assets.dart';
 
 class Product {
-  final String category;
-  final int? discount;
   final String id;
+  final String title;
+  final String category;
   final String imageUrl;
   final double price;
+  final int? discount;
   final double? rate;
-  final String title;
-  final bool isFavorite;
   final List<String> sizes;
   final List<String> colors;
-  final int? qty;
-  final String? selColor;
-  final String? selSize;
 
   Product({
     required this.id,
@@ -21,15 +17,39 @@ class Product {
     required this.category,
     required this.price,
     required this.imageUrl,
-    this.isFavorite = false,
     required this.sizes,
     required this.colors,
     this.rate,
     this.discount = 1,
-    this.qty,
-    this.selColor,
-    this.selSize,
   });
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'category': category,
+      'imageUrl': imageUrl,
+      'price': price,
+      'discount': discount,
+      'rate': rate,
+      'sizes': sizes,
+      'colors': colors,
+    };
+  }
+
+  factory Product.fromMap(Map<String, dynamic> map, String id) {
+    return Product(
+      id: id,
+      title: map['title'],
+      category: map['category'],
+      imageUrl: map['imageUrl'],
+      price: map['price'],
+      discount: map['discount'],
+      rate: map['rate'],
+      sizes: map['sizes'],
+      colors: map['colors'],
+    );
+  }
 }
 
 // TODO: TEMP DUMMY DATA
