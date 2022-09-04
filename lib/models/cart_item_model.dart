@@ -37,7 +37,7 @@ class CartItem {
       qty: map['qty'] ?? 0,
       title: map['title'] ?? '',
       imageUrl: map['imageUrl'] ?? '',
-      price: map['price'] ?? 0,
+      price: map['price'].toDouble(),
       color: map['color'] ?? '',
       size: map['size'] ?? '',
     );

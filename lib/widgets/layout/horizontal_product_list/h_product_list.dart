@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/services/db_services.dart';
+import 'package:ecommerce_app/controllers/db_controller.dart';
 import 'package:ecommerce_app/widgets/layout/horizontal_product_list/h_product_skeleton.dart';
 import 'package:ecommerce_app/widgets/layout/horizontal_product_list/h_product_item.dart';
 
@@ -11,13 +11,13 @@ class HProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    final productsStream = DBServices.instance.getProducts;
+    final productsStream = DB.instance.getAllProducts;
 
     // TODO: Find a solution for the fixed height
     return SizedBox(
       height: size.height > 700 ? 275 : size.height * .38,
       child: StreamBuilder(
-          stream: productsStream(),
+          stream: productsStream(['3WZhzcYI4sMDIoNZkTaq']),
           builder: (_, AsyncSnapshot snap) {
             final isDone = snap.connectionState == ConnectionState.active;
 

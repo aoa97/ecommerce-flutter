@@ -81,25 +81,4 @@ class DBServices {
       return result;
     });
   }
-
-// TODO: Move to controller
-  Stream<List<Product>> getProducts() {
-    final ref = _fireStore.collection('products');
-    final snaps = ref.snapshots();
-    return snaps.map((snap) {
-      return snap.docs
-          .map((doc) => Product(
-                id: doc.id,
-                title: doc.data()['title'],
-                category: doc.data()['category'],
-                imageUrl: doc.data()['imageUrl'],
-                price: doc.data()['rate'],
-                discount: doc.data()['discount'],
-                rate: doc.data()['rate'],
-                sizes: List.from(doc.data()['sizes']),
-                colors: List.from(doc.data()['colors']),
-              ))
-          .toList();
-    });
-  }
 }

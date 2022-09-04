@@ -5,10 +5,7 @@ import 'package:ecommerce_app/models/product_model.dart';
 class FavoritesList extends StatelessWidget {
   final List<Product>? list;
 
-  const FavoritesList(
-    this.list, {
-    Key? key,
-  }) : super(key: key);
+  const FavoritesList(this.list, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

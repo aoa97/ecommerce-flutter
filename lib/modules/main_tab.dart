@@ -1,12 +1,10 @@
-import 'package:badges/badges.dart';
-import 'package:ecommerce_app/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart';
 import 'package:ecommerce_app/modules/cart/cart_page.dart';
 import 'package:ecommerce_app/modules/favorites/favorites_page.dart';
 import 'package:ecommerce_app/modules/home/home_page.dart';
 import 'package:ecommerce_app/modules/profile/profile_page.dart';
 import 'package:ecommerce_app/modules/shop/shop_page.dart';
-import 'package:provider/provider.dart';
 
 class MainTab extends StatefulWidget {
   const MainTab({Key? key}) : super(key: key);
@@ -28,8 +26,6 @@ class _MainTabState extends State<MainTab> {
 
   @override
   void initState() {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    userProvider.loadUserData();
     super.initState();
   }
 
@@ -52,29 +48,37 @@ class _MainTabState extends State<MainTab> {
         onTap: (index) => setState(() => _selectedIndex = index),
         items: [
           const BottomNavigationBarItem(
-              activeIcon: Icon(Icons.home),
-              icon: Icon(Icons.home_outlined),
-              label: "Home"),
+            activeIcon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
+            label: "Home",
+          ),
           const BottomNavigationBarItem(
-              activeIcon: Icon(Icons.shopping_cart),
-              icon: Icon(Icons.shopping_cart_outlined),
-              label: "Shop"),
+            activeIcon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart_outlined),
+            label: "Shop",
+          ),
           BottomNavigationBarItem(
-              activeIcon: const Icon(Icons.shopping_bag),
-              icon: Badge(
-                  showBadge: true,
-                  badgeContent: const Text('1',
-                      style: TextStyle(fontSize: 11, color: Colors.white)),
-                  child: const Icon(Icons.shopping_bag_outlined)),
-              label: "Bag"),
+            activeIcon: const Icon(Icons.shopping_bag),
+            icon: Badge(
+                showBadge: true,
+                badgeContent: const Text('1',
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Colors.white,
+                    )),
+                child: const Icon(Icons.shopping_bag_outlined)),
+            label: "Bag",
+          ),
           const BottomNavigationBarItem(
-              activeIcon: Icon(Icons.favorite),
-              icon: Icon(Icons.favorite_outline),
-              label: "Favorites"),
+            activeIcon: Icon(Icons.favorite),
+            icon: Icon(Icons.favorite_outline),
+            label: "Favorites",
+          ),
           const BottomNavigationBarItem(
-              activeIcon: Icon(Icons.account_circle),
-              icon: Icon(Icons.account_circle_outlined),
-              label: "Profile"),
+            activeIcon: Icon(Icons.account_circle),
+            icon: Icon(Icons.account_circle_outlined),
+            label: "Profile",
+          ),
         ],
       ),
     );

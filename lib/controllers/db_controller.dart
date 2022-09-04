@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/models/cart_item_model.dart';
 import 'package:ecommerce_app/models/product_model.dart';
+import 'package:ecommerce_app/models/user_data_model.dart';
 import 'package:ecommerce_app/services/auth_services.dart';
 import 'package:ecommerce_app/services/db_services.dart';
 
@@ -38,9 +39,36 @@ class DB {
         });
   }
 
-  Future<void> toggleFavorite(String productId) async {
+  Stream<List<Product>> getFavoriteProducts(List<String> favIds) {
+    return db.collectionsStream(
+        path: 'products',
+        queryBuilder: (query) => query.where(
+              FieldPath.documentId,
+              whereIn: List.from(favIds),
+            ),
+        builder: (Map<String, dynamic>? data, String documentId) {
+          return Product.fromMap(data!, documentId);
+        });
+  }
+
+  Stream<List<Product>> getAllProducts(List<String> favIds) {
+    return db.collectionsStream(
+        path: 'products',
+        builder: (Map<String, dynamic>? data, String documentId) {
+          final isFavorite = favIds.contains(documentId);
+          return Product.fromMap(data!, documentId, isFavorite: isFavorite);
+        });
+  }
+
+  Future<void> addFavorite(String productId) async {
     await db.updateData(path: '/users/$uid', data: {
       'favorites': FieldValue.arrayUnion([productId])
+    });
+  }
+
+  Future<void> removeFavorite(String productId) async {
+    await db.updateData(path: '/users/$uid', data: {
+      'favorites': FieldValue.arrayRemove([productId])
     });
   }
 }

@@ -29,12 +29,13 @@ class ProductPage extends StatelessWidget {
     _addToCart() {
       try {
         final item = CartItem(
-            productId: product.id,
-            title: product.title,
-            imageUrl: product.imageUrl,
-            price: product.price,
-            color: selColor,
-            size: selSize);
+          productId: product.id,
+          title: product.title,
+          imageUrl: product.imageUrl,
+          price: product.price,
+          color: selColor,
+          size: selSize,
+        );
         DB.instance.addToCart(item);
         MainMessage.build(context, "The product has been added to cart");
       } catch (e) {
@@ -59,7 +60,8 @@ class ProductPage extends StatelessWidget {
           ),
           Column(
             children: [
-              ProductForm(product, (size, color) => _onSelAttributes(size, color)),
+              ProductForm(
+                  product, (size, color) => _onSelAttributes(size, color)),
               ProductDetails(product),
               const ProductExpandedTiles(),
               const ProductsSection()

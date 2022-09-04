@@ -18,12 +18,19 @@ class HProductItem extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     _toggleFavorite() {
-      DB.instance.toggleFavorite(product.id);
+      if (product.isFavorite!) {
+        DB.instance.removeFavorite(product.id);
+      } else {
+        DB.instance.addFavorite(product.id);
+      }
     }
 
     _navigateToDetails() {
-      Navigator.pushNamed(context, AppRoutes.productPageRoute,
-          arguments: product);
+      Navigator.pushNamed(
+        context,
+        AppRoutes.productPageRoute,
+        arguments: product,
+      );
     }
 
     return InkWell(
@@ -58,7 +65,7 @@ class HProductItem extends StatelessWidget {
                 bottom: -20,
                 right: 0,
                 child: FavButton(
-                  isActive: false, // TODO: Add dynamic val
+                  isActive: product.isFavorite, // TODO: Add dynamic val
                   onPressed: _toggleFavorite,
                 ),
               )
@@ -86,7 +93,10 @@ class HProductItem extends StatelessWidget {
           Text(
             product.category,
             style: const TextStyle(
-                color: Colors.black, fontSize: 16, fontWeight: FontWeight.w500),
+              color: Colors.black,
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
           ),
           const SizedBox(
             height: 5,
@@ -94,8 +104,9 @@ class HProductItem extends StatelessWidget {
           Text(
             '${product.price.round().toString()}\$',
             style: TextStyle(
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.w500),
+              color: Theme.of(context).primaryColor,
+              fontWeight: FontWeight.w500,
+            ),
           )
         ],
       ),

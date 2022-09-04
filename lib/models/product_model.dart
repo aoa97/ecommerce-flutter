@@ -10,6 +10,7 @@ class Product {
   final double? rate;
   final List<String> sizes;
   final List<String> colors;
+  final bool? isFavorite;
 
   Product({
     required this.id,
@@ -21,6 +22,7 @@ class Product {
     required this.colors,
     this.rate,
     this.discount = 1,
+    this.isFavorite,
   });
 
   Map<String, dynamic> toMap() {
@@ -34,20 +36,23 @@ class Product {
       'rate': rate,
       'sizes': sizes,
       'colors': colors,
+      'isFavorite': isFavorite,
     };
   }
 
-  factory Product.fromMap(Map<String, dynamic> map, String id) {
+  factory Product.fromMap(Map<String, dynamic> map, String documentId,
+      {bool? isFavorite}) {
     return Product(
-      id: id,
+      id: documentId,
       title: map['title'],
       category: map['category'],
-      imageUrl: map['imageUrl'],
-      price: map['price'],
+      imageUrl: map['imageUrl'] ?? '',
+      price: map['price'].toDouble(), // Explicitly casting
       discount: map['discount'],
-      rate: map['rate'],
-      sizes: map['sizes'],
-      colors: map['colors'],
+      rate: map['rate'].toDouble(),
+      colors: List.from(map['colors']),
+      sizes: List.from(map['sizes']),
+      isFavorite: isFavorite,
     );
   }
 }
