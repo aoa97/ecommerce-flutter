@@ -10,6 +10,7 @@ class FavoritesList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
+      padding: const EdgeInsets.only(bottom: 14),
       shrinkWrap: true,
       itemCount: list!.length,
       separatorBuilder: (_, __) => const SizedBox(height: 24),

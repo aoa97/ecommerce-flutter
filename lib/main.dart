@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "E-commerce",
       initialRoute: AppRoutes.landingPageRoute,
-      onGenerateRoute: onGenerate,
+      onGenerateRoute: onGenerateMain,
       theme: ThemeData(
           fontFamily: 'Metro',
           primarySwatch: Palette.mainSwatch,

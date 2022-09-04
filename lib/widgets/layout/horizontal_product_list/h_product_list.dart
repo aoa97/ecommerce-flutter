@@ -1,7 +1,9 @@
+import 'package:ecommerce_app/models/user_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/controllers/db_controller.dart';
 import 'package:ecommerce_app/widgets/layout/horizontal_product_list/h_product_skeleton.dart';
 import 'package:ecommerce_app/widgets/layout/horizontal_product_list/h_product_item.dart';
+import 'package:provider/provider.dart';
 
 class HProductList extends StatelessWidget {
   const HProductList({
@@ -10,14 +12,14 @@ class HProductList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final favIds = Provider.of<UserData>(context, listen: false).favorites;
     final size = MediaQuery.of(context).size;
-    final productsStream = DB.instance.getAllProducts;
 
     // TODO: Find a solution for the fixed height
     return SizedBox(
       height: size.height > 700 ? 275 : size.height * .38,
       child: StreamBuilder(
-          stream: productsStream(['3WZhzcYI4sMDIoNZkTaq']),
+          stream: DB.instance.getAllProducts(favIds),
           builder: (_, AsyncSnapshot snap) {
             final isDone = snap.connectionState == ConnectionState.active;
 

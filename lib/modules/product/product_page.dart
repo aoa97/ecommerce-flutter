@@ -52,7 +52,7 @@ class ProductPage extends StatelessWidget {
           child: Column(
         children: [
           Image.network(
-            AppAssets.product_2,
+            product.imageUrl,
             fit: BoxFit.cover,
             width: double.infinity,
             height: size.height * .45,
@@ -61,7 +61,9 @@ class ProductPage extends StatelessWidget {
           Column(
             children: [
               ProductForm(
-                  product, (size, color) => _onSelAttributes(size, color)),
+                product,
+                (size, color) => _onSelAttributes(size, color),
+              ),
               ProductDetails(product),
               const ProductExpandedTiles(),
               const ProductsSection()
@@ -69,7 +71,9 @@ class ProductPage extends StatelessWidget {
           )
         ],
       )),
-      bottomNavigationBar: AddToCart(_addToCart),
+      bottomNavigationBar: AddToCart(
+        _addToCart,
+      ),
     );
   }
 }

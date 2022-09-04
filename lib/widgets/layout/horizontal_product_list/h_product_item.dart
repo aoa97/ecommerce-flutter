@@ -1,24 +1,24 @@
 import 'package:ecommerce_app/controllers/db_controller.dart';
 import 'package:ecommerce_app/models/product_model.dart';
+import 'package:ecommerce_app/models/user_data_model.dart';
 import 'package:ecommerce_app/utils/routes.dart';
 import 'package:ecommerce_app/widgets/ui/fav_button.dart';
 import 'package:ecommerce_app/widgets/ui/rating_stars.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HProductItem extends StatelessWidget {
   final Product product;
 
-  const HProductItem(
-    this.product, {
-    Key? key,
-  }) : super(key: key);
+  const HProductItem(this.product, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final isFav = Provider.of<UserData>(context).favorites.contains(product.id);
     final size = MediaQuery.of(context).size;
 
     _toggleFavorite() {
-      if (product.isFavorite!) {
+      if (isFav) {
         DB.instance.removeFavorite(product.id);
       } else {
         DB.instance.addFavorite(product.id);
@@ -65,7 +65,7 @@ class HProductItem extends StatelessWidget {
                 bottom: -20,
                 right: 0,
                 child: FavButton(
-                  isActive: product.isFavorite, // TODO: Add dynamic val
+                  isActive: isFav,
                   onPressed: _toggleFavorite,
                 ),
               )
@@ -81,7 +81,7 @@ class HProductItem extends StatelessWidget {
             height: 5,
           ),
           Text(
-            product.title,
+            product.category,
             style: const TextStyle(
               color: Colors.grey,
               fontSize: 11,
@@ -91,7 +91,7 @@ class HProductItem extends StatelessWidget {
             height: 5,
           ),
           Text(
-            product.category,
+            product.title,
             style: const TextStyle(
               color: Colors.black,
               fontSize: 16,

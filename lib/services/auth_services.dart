@@ -10,12 +10,16 @@ class AuthServices {
 
   Future<void> register(String email, String password, String name) async {
     final userData = await _auth.createUserWithEmailAndPassword(
-        email: email, password: password);
+      email: email,
+      password: password,
+    );
     final id = userData.user!.uid;
     userData.user!.updateDisplayName(name);
-    await db.setData(
-        path: 'users/$id',
-        data: {'email': email, 'name': name, 'createdAt': DateTime.now()});
+    await db.setData(path: 'users/$id', data: {
+      'email': email,
+      'name': name,
+      'createdAt': DateTime.now(),
+    });
   }
 
   Future<void> login(String email, String password) async {

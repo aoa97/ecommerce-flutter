@@ -25,14 +25,14 @@ class ProductDetails extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    product.category,
+                    product.title,
                     style: Theme.of(context).textTheme.headline2,
                   ),
                   const SizedBox(
                     height: 5,
                   ),
                   Text(
-                    product.title,
+                    product.category,
                     style: Theme.of(context).textTheme.caption,
                   ),
                   const SizedBox(

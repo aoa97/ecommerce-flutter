@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CartEmpty extends StatelessWidget {
-  const CartEmpty({Key? key}) : super(key: key);
+class FavoritesEmpty extends StatelessWidget {
+  const FavoritesEmpty({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Flexible(
       child: Center(
         child: Text(
-          "Your Cart List is Empty",
+          "Your Favorites List is Empty",
           style: Theme.of(context).textTheme.headline3,
         ),
       ),

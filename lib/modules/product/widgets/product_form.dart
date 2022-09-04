@@ -1,7 +1,10 @@
-import 'package:ecommerce_app/models/product_model.dart';
+import 'package:ecommerce_app/controllers/db_controller.dart';
+import 'package:ecommerce_app/models/user_data_model.dart';
 import 'package:flutter/material.dart';
+import 'package:ecommerce_app/models/product_model.dart';
 import 'package:ecommerce_app/widgets/ui/fav_button.dart';
 import 'package:ecommerce_app/widgets/ui/dropdown_component.dart';
+import 'package:provider/provider.dart';
 
 enum Attribute { size, color }
 
@@ -38,6 +41,17 @@ class _ProductFormState extends State<ProductForm> {
 
   @override
   Widget build(BuildContext context) {
+    final isFav =
+        Provider.of<UserData>(context).favorites.contains(widget.product.id);
+
+    _toggleFavorite() {
+      if (isFav) {
+        DB.instance.removeFavorite(widget.product.id);
+      } else {
+        DB.instance.addFavorite(widget.product.id);
+      }
+    }
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       margin: const EdgeInsets.only(top: 16, bottom: 22),
@@ -58,7 +72,7 @@ class _ProductFormState extends State<ProductForm> {
               onChanged: (value) => _selAttributes(Attribute.color, value),
             )),
             const SizedBox(width: 24),
-            FavButton(isActive: false, onPressed: () => {})
+            FavButton(isActive: isFav, onPressed: _toggleFavorite)
           ]),
     );
   }

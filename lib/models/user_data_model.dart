@@ -2,15 +2,16 @@ class UserData {
   final String id;
   final String name;
   final String email;
-  final String? avatar;
-  final List<String>? favorites;
+  final String avatar;
+  final List<String> favorites;
 
-  UserData(
-      {required this.id,
-      required this.name,
-      required this.email,
-      this.avatar,
-      this.favorites});
+  UserData({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.avatar,
+    required this.favorites,
+  });
 
   Map<String, dynamic> toMap() {
     return {'name': name, 'email': email, 'favorites': favorites};
@@ -24,5 +25,9 @@ class UserData {
       avatar: map['avatar'],
       favorites: List.from(map['favorites']),
     );
+  }
+
+  factory UserData.initial() {
+    return UserData(id: '', name: '', email: '', avatar: '', favorites: []);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/utils/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/controllers/db_controller.dart';
 import 'package:ecommerce_app/models/cart_item_model.dart';
@@ -18,6 +19,14 @@ class FavoritesListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
+    _navigateToDetails() {
+      Navigator.pushNamed(
+        context,
+        AppRoutes.productPageRoute,
+        arguments: item,
+      );
+    }
+
     _addToCart() {
       try {
         final product = CartItem(
@@ -35,84 +44,89 @@ class FavoritesListItem extends StatelessWidget {
       }
     }
 
-    _removeFromFavorites() {}
+    _removeFromFavorites() {
+      DB.instance.removeFavorite(item.id);
+    }
 
     return Stack(
       alignment: Alignment.bottomRight,
       clipBehavior: Clip.none,
       children: [
-        ProductCard(
-            imageUrl: item.imageUrl,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      item.category,
-                      style: Theme.of(context).textTheme.caption,
-                    ),
-                    InkWell(
-                      onTap: _removeFromFavorites,
-                      child: const Icon(
-                        Icons.close,
-                        color: Colors.grey,
-                        size: 15,
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(height: 6),
-                Text(item.title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline3!
-                        .copyWith(fontSize: 16)),
-                const SizedBox(height: 6),
-                Expanded(
-                  child: Row(
+        InkWell(
+          onTap: _navigateToDetails,
+          child: ProductCard(
+              imageUrl: item.imageUrl,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(children: [
-                            Text("Color: ",
-                                style: Theme.of(context).textTheme.caption),
-                            Text(item.colors[0],
+                      Text(
+                        item.category,
+                        style: Theme.of(context).textTheme.caption,
+                      ),
+                      InkWell(
+                        onTap: _removeFromFavorites,
+                        child: const Icon(
+                          Icons.close,
+                          color: Colors.grey,
+                          size: 15,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  Text(item.title,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline3!
+                          .copyWith(fontSize: 16)),
+                  const SizedBox(height: 6),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(children: [
+                              Text("Color: ",
+                                  style: Theme.of(context).textTheme.caption),
+                              Text(item.colors[0],
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline4!
+                                      .copyWith(fontSize: 11))
+                            ]),
+                            Text("\$${item.price}")
+                          ],
+                        ),
+                        const SizedBox(width: 25),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(children: [
+                              Text("Size: ",
+                                  style: Theme.of(context).textTheme.caption),
+                              Text(
+                                item.sizes[0],
                                 style: Theme.of(context)
                                     .textTheme
                                     .headline4!
-                                    .copyWith(fontSize: 11))
-                          ]),
-                          Text("\$${item.price}")
-                        ],
-                      ),
-                      const SizedBox(width: 25),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(children: [
-                            Text("Size: ",
-                                style: Theme.of(context).textTheme.caption),
-                            Text(
-                              item.sizes[0],
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline4!
-                                  .copyWith(fontSize: 11),
-                            )
-                          ]),
-                          const RatingStars(),
-                        ],
-                      ),
-                    ],
+                                    .copyWith(fontSize: 11),
+                              )
+                            ]),
+                            const RatingStars(),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            )),
+                ],
+              )),
+        ),
         Positioned(
           bottom: -15,
           right: 5,

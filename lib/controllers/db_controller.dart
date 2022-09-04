@@ -31,14 +31,6 @@ class DB {
     }
   }
 
-  Stream<List<CartItem>> getCart() {
-    return db.collectionsStream(
-        path: 'users/$uid/cart',
-        builder: (Map<String, dynamic>? data, String documentId) {
-          return CartItem.fromMap(data!, documentId);
-        });
-  }
-
   Stream<List<Product>> getFavoriteProducts(List<String> favIds) {
     return db.collectionsStream(
         path: 'products',
@@ -70,5 +62,21 @@ class DB {
     await db.updateData(path: '/users/$uid', data: {
       'favorites': FieldValue.arrayRemove([productId])
     });
+  }
+
+  Stream<UserData> getUserData() {
+    return db.documentsStream(
+        path: 'users/$uid',
+        builder: (Map<String, dynamic>? data, String documentId) {
+          return UserData.fromMap(data!, documentId);
+        });
+  }
+
+  Stream<List<CartItem>> getUserCart() {
+    return db.collectionsStream(
+        path: 'users/$uid/cart',
+        builder: (Map<String, dynamic>? data, String documentId) {
+          return CartItem.fromMap(data!, documentId);
+        });
   }
 }
