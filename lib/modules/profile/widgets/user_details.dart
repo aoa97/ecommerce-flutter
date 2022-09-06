@@ -35,7 +35,7 @@ class _UserDetailsState extends State<UserDetails> {
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundImage: NetworkImage(widget.user.avatar!),
+            backgroundImage: NetworkImage(widget.user.avatar),
           ),
           const SizedBox(width: 16),
           Row(

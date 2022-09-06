@@ -11,6 +11,7 @@ class Product {
   final List<String> sizes;
   final List<String> colors;
   final bool? isFavorite;
+  final bool? isRecent;
 
   Product({
     required this.id,
@@ -23,6 +24,7 @@ class Product {
     this.rate,
     this.discount = 1,
     this.isFavorite,
+    this.isRecent,
   });
 
   Map<String, dynamic> toMap() {
@@ -44,6 +46,7 @@ class Product {
     Map<String, dynamic> map,
     String documentId, {
     bool? isFavorite,
+    bool? isRecent,
   }) {
     return Product(
       id: documentId,
@@ -56,6 +59,7 @@ class Product {
       colors: List.from(map['colors']),
       sizes: List.from(map['sizes']),
       isFavorite: isFavorite ?? false,
+      isRecent: isRecent ?? false,
     );
   }
 }

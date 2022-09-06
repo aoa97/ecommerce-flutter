@@ -1,12 +1,12 @@
-import 'package:ecommerce_app/models/user_data_model.dart';
-import 'package:ecommerce_app/modules/favorites/widgets/favorites_empty.dart';
 import 'package:flutter/material.dart';
-import 'package:ecommerce_app/controllers/db_controller.dart';
-import 'package:ecommerce_app/models/product_model.dart';
-import 'package:ecommerce_app/modules/favorites/widgets/favorites_list.dart';
 import 'package:provider/provider.dart';
+import 'package:ecommerce_app/models/product_model.dart';
+import 'package:ecommerce_app/models/user_data_model.dart';
+import 'package:ecommerce_app/controllers/db_controller.dart';
+import 'package:ecommerce_app/modules/favorites/widgets/favorites_empty.dart';
+import 'package:ecommerce_app/modules/favorites/widgets/favorites_list_item.dart';
+import 'package:ecommerce_app/widgets/layout/product/product_skeleton.dart';
 
-//TODO: AppBar shadow & filters
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({Key? key}) : super(key: key);
 
@@ -35,10 +35,17 @@ class FavoritesPage extends StatelessWidget {
                 child: StreamBuilder(
                   stream: db.getFavoriteProducts(favoriteIds),
                   builder: (_, AsyncSnapshot<List<Product>> snap) {
-                    if (snap.connectionState == ConnectionState.active) {
-                      return FavoritesList(snap.data);
-                    }
-                    return const Center(child: CircularProgressIndicator());
+                    final isActive =
+                        snap.connectionState == ConnectionState.active;
+                    return ListView.separated(
+                      padding: const EdgeInsets.only(bottom: 14),
+                      shrinkWrap: true,
+                      itemCount: isActive ? snap.data!.length : 3,
+                      separatorBuilder: (_, __) => const SizedBox(height: 24),
+                      itemBuilder: (_, index) => isActive
+                          ? FavoritesListItem(snap.data![index])
+                          : const ProductSkeleton(),
+                    );
                   },
                 ),
               ),

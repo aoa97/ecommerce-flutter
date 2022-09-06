@@ -1,4 +1,6 @@
 import 'package:ecommerce_app/models/cart_item_model.dart';
+import 'package:ecommerce_app/utils/routes.dart';
+import 'package:ecommerce_app/utils/routing.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:ecommerce_app/modules/cart/cart_page.dart';
@@ -20,7 +22,7 @@ class _MainTabState extends State<MainTab> {
 
   final List<Widget> _pages = const [
     HomePage(),
-    ShopPage(),
+    Navigator(onGenerateRoute: onGenerateShopStack),
     CartPage(),
     FavoritesPage(),
     ProfilePage(),

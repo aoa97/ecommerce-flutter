@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "E-commerce",
+      title: "E-Commerce",
       initialRoute: AppRoutes.landingPageRoute,
       onGenerateRoute: onGenerateMain,
       theme: getApplicationTheme(),

@@ -28,10 +28,7 @@ class LandingPage extends StatelessWidget {
             initialData: const [],
           ),
         ],
-        child: const Navigator(
-          initialRoute: AppRoutes.mainTabRoute,
-          onGenerateRoute: onGenerateAuthenticated,
-        ),
+        child: const Navigator(onGenerateRoute: onGenerateAuthenticated),
       );
     } else if (!loggedIn) {
       return const AuthPage();

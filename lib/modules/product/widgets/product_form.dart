@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:ecommerce_app/controllers/db_controller.dart';
 import 'package:ecommerce_app/models/user_data_model.dart';
-import 'package:flutter/material.dart';
 import 'package:ecommerce_app/models/product_model.dart';
 import 'package:ecommerce_app/widgets/ui/fav_button.dart';
 import 'package:ecommerce_app/widgets/ui/dropdown_component.dart';
-import 'package:provider/provider.dart';
 
 enum Attribute { size, color }
 
@@ -41,8 +41,8 @@ class _ProductFormState extends State<ProductForm> {
 
   @override
   Widget build(BuildContext context) {
-    final isFav =
-        Provider.of<UserData>(context).favorites.contains(widget.product.id);
+    final userState = Provider.of<UserData>(context);
+    final isFav = userState.favorites.contains(widget.product.id);
 
     _toggleFavorite() {
       if (isFav) {
@@ -62,15 +62,18 @@ class _ProductFormState extends State<ProductForm> {
             Expanded(
               child: DropDownComponent(
                 list: widget.product.sizes,
+                value: _size,
                 onChanged: (value) => _selAttributes(Attribute.size, value),
               ),
             ),
             const SizedBox(width: 24),
             Expanded(
-                child: DropDownComponent(
-              list: widget.product.colors,
-              onChanged: (value) => _selAttributes(Attribute.color, value),
-            )),
+              child: DropDownComponent(
+                list: widget.product.colors,
+                value: _color,
+                onChanged: (value) => _selAttributes(Attribute.color, value),
+              ),
+            ),
             const SizedBox(width: 24),
             FavButton(isActive: isFav, onPressed: _toggleFavorite)
           ]),

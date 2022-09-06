@@ -5,10 +5,7 @@ import 'package:ecommerce_app/models/product_model.dart';
 class ProductDetails extends StatelessWidget {
   final Product product;
 
-  const ProductDetails(
-    this.product, {
-    Key? key,
-  }) : super(key: key);
+  const ProductDetails(this.product, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,10 @@
 import 'package:ecommerce_app/controllers/db_controller.dart';
 import 'package:ecommerce_app/models/product_model.dart';
 import 'package:ecommerce_app/models/user_data_model.dart';
+import 'package:ecommerce_app/theme/palette.dart';
 import 'package:ecommerce_app/utils/routes.dart';
 import 'package:ecommerce_app/widgets/ui/fav_button.dart';
+import 'package:ecommerce_app/widgets/ui/item_chip.dart';
 import 'package:ecommerce_app/widgets/ui/rating_stars.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -53,13 +55,12 @@ class HProductItem extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(4.0),
-                child: Chip(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  label: Text(
-                    '-${product.discount.toString()}%',
-                    style: const TextStyle(fontSize: 11, color: Colors.white),
-                  ),
-                ),
+                child: product.isRecent!
+                    ? const ItemChip(
+                        title: "New",
+                        color: Palette.black,
+                      )
+                    : ItemChip(title: '-${product.discount.toString()}%'),
               ),
               Positioned(
                 bottom: -20,
@@ -71,25 +72,14 @@ class HProductItem extends StatelessWidget {
               )
             ],
           ),
-          const SizedBox(
-            height: 8,
-          ),
-          RatingStars(
-            value: product.rate,
-          ),
-          const SizedBox(
-            height: 5,
-          ),
+          const SizedBox(height: 8),
+          RatingStars(value: product.rate),
+          const SizedBox(height: 5),
           Text(
             product.category,
-            style: const TextStyle(
-              color: Colors.grey,
-              fontSize: 11,
-            ),
+            style: const TextStyle(color: Colors.grey, fontSize: 11),
           ),
-          const SizedBox(
-            height: 5,
-          ),
+          const SizedBox(height: 5),
           Text(
             product.title,
             style: const TextStyle(
@@ -98,9 +88,7 @@ class HProductItem extends StatelessWidget {
               fontWeight: FontWeight.w500,
             ),
           ),
-          const SizedBox(
-            height: 5,
-          ),
+          const SizedBox(height: 5),
           Text(
             '${product.price.round().toString()}\$',
             style: TextStyle(

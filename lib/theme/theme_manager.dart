@@ -59,5 +59,10 @@ ThemeData getApplicationTheme() {
           borderRadius: BorderRadius.circular(4),
           borderSide: const BorderSide(color: Colors.white, width: 0),
         ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Remove v margins
+        ),
       ));
 }

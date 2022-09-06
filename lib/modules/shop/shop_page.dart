@@ -9,13 +9,18 @@ class ShopPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        elevation: 2,
         title: const Text("Categories"),
-        elevation: 3,
+        actions: [IconButton(icon: const Icon(Icons.search), onPressed: () {})],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child:
-            SingleChildScrollView(child: Column(children: [const BannerCard(), CategoryCards()])),
+        child: SingleChildScrollView(
+          child: Column(children: [
+            const BannerCard(),
+            CategoryCards(),
+          ]),
+        ),
       ),
     );
   }

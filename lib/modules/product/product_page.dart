@@ -1,13 +1,12 @@
-import 'package:ecommerce_app/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/controllers/db_controller.dart';
 import 'package:ecommerce_app/models/cart_item_model.dart';
 import 'package:ecommerce_app/models/product_model.dart';
+import 'package:ecommerce_app/widgets/ui/main_messaage.dart';
 import 'package:ecommerce_app/modules/product/widgets/add_to_cart.dart';
 import 'package:ecommerce_app/modules/product/widgets/product_details.dart';
 import 'package:ecommerce_app/modules/product/widgets/product_expanded_tiles.dart';
 import 'package:ecommerce_app/modules/product/widgets/product_form.dart';
-import 'package:ecommerce_app/widgets/ui/main_messaage.dart';
 import 'package:ecommerce_app/modules/product/widgets/products_section.dart';
 
 class ProductPage extends StatelessWidget {
@@ -21,6 +20,7 @@ class ProductPage extends StatelessWidget {
     var selColor = product.colors[0];
     var selSize = product.sizes[0];
 
+    // CB to get attributes from form widget
     _onSelAttributes(String size, String color) {
       selSize = size;
       selColor = color;
@@ -49,31 +49,30 @@ class ProductPage extends StatelessWidget {
         actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.share))],
       ),
       body: SingleChildScrollView(
-          child: Column(
-        children: [
-          Image.network(
-            product.imageUrl,
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: size.height * .45,
-            alignment: Alignment.topCenter,
-          ),
-          Column(
-            children: [
-              ProductForm(
-                product,
-                (size, color) => _onSelAttributes(size, color),
-              ),
-              ProductDetails(product),
-              const ProductExpandedTiles(),
-              const ProductsSection()
-            ],
-          )
-        ],
-      )),
-      bottomNavigationBar: AddToCart(
-        _addToCart,
+        child: Column(
+          children: [
+            Image.network(
+              product.imageUrl,
+              fit: BoxFit.cover,
+              width: double.infinity,
+              height: size.height * .45,
+              alignment: Alignment.topCenter,
+            ),
+            Column(
+              children: [
+                ProductForm(
+                  product,
+                  (size, color) => _onSelAttributes(size, color),
+                ),
+                ProductDetails(product),
+                const ProductExpandedTiles(),
+                const ProductsSection()
+              ],
+            )
+          ],
+        ),
       ),
+      bottomNavigationBar: AddToCart(_addToCart),
     );
   }
 }

@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/modules/category/category_details_page.dart';
+import 'package:ecommerce_app/modules/shop/shop_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_app/utils/routes.dart';
@@ -29,10 +31,24 @@ Route<dynamic>? onGenerateMain(RouteSettings settings) {
 // Authenticated routes
 Route<dynamic>? onGenerateAuthenticated(RouteSettings settings) {
   switch (settings.name) {
+    case AppRoutes.categoryDetailsRoute:
+      final title = settings.arguments as String;
+      return MaterialPageRoute(builder: (_) => CategoryDetailsPage(title));
     case AppRoutes.productPageRoute:
       final product = settings.arguments as Product;
       return MaterialPageRoute(builder: (_) => ProductPage(product));
     default:
       return MaterialPageRoute(builder: (_) => const MainTab());
+  }
+}
+
+Route<dynamic>? onGenerateShopStack(RouteSettings settings) {
+  switch (settings.name) {
+    case AppRoutes.categoryDetailsRoute:
+      final title = settings.arguments as String;
+      return MaterialPageRoute(builder: (_) => CategoryDetailsPage(title));
+    case AppRoutes.shopPageRoute:
+    default:
+      return MaterialPageRoute(builder: (_) => const ShopPage());
   }
 }

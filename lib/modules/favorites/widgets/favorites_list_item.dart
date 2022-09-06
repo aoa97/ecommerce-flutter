@@ -5,7 +5,7 @@ import 'package:ecommerce_app/models/cart_item_model.dart';
 import 'package:ecommerce_app/widgets/ui/main_messaage.dart';
 import 'package:ecommerce_app/widgets/ui/rating_stars.dart';
 import 'package:ecommerce_app/models/product_model.dart';
-import 'package:ecommerce_app/widgets/layout/product_card.dart';
+import 'package:ecommerce_app/widgets/layout/product/product_card.dart';
 
 class FavoritesListItem extends StatelessWidget {
   final Product item;

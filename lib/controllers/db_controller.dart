@@ -43,6 +43,47 @@ class DB {
         });
   }
 
+  Stream<List<Product>> getCategoryProducts(String category) {
+    return db.collectionsStream(
+        path: 'products',
+        queryBuilder: (query) => query.where(
+              'category',
+              isEqualTo: category,
+            ),
+        builder: (Map<String, dynamic>? data, String documentId) {
+          return Product.fromMap(data!, documentId);
+        });
+  }
+
+  Stream<List<Product>> getSaleProducts(List<String> favIds) {
+    return db.collectionsStream(
+        path: 'products',
+        queryBuilder: (query) => query.where(
+              'discount',
+              isGreaterThan: 0,
+            ),
+        builder: (Map<String, dynamic>? data, String documentId) {
+          final isFavorite = favIds.contains(documentId);
+          return Product.fromMap(data!, documentId, isFavorite: isFavorite);
+        });
+  }
+
+  Stream<List<Product>> getRecentProducts(List<String> favIds) {
+    return db.collectionsStream(
+        path: 'products',
+        queryBuilder: (query) =>
+            query.orderBy('createdAt', descending: true).limit(2),
+        builder: (Map<String, dynamic>? data, String documentId) {
+          final isFavorite = favIds.contains(documentId);
+          return Product.fromMap(
+            data!,
+            documentId,
+            isFavorite: isFavorite,
+            isRecent: true,
+          );
+        });
+  }
+
   Stream<List<Product>> getAllProducts(List<String> favIds) {
     return db.collectionsStream(
         path: 'products',
