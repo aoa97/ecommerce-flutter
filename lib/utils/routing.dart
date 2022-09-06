@@ -44,6 +44,9 @@ Route<dynamic>? onGenerateAuthenticated(RouteSettings settings) {
 
 Route<dynamic>? onGenerateShopStack(RouteSettings settings) {
   switch (settings.name) {
+    case AppRoutes.productPageRoute:
+      final product = settings.arguments as Product;
+      return MaterialPageRoute(builder: (_) => ProductPage(product));
     case AppRoutes.categoryDetailsRoute:
       final title = settings.arguments as String;
       return MaterialPageRoute(builder: (_) => CategoryDetailsPage(title));

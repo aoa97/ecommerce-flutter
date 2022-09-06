@@ -90,7 +90,7 @@ class CartListItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Counter(item.qty),
+              Counter(id: item.id!, value: item.qty),
               Text(
                 "\$${item.price}",
                 style: Theme.of(context).textTheme.bodyText1,

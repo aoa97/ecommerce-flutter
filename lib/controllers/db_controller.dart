@@ -120,4 +120,12 @@ class DB {
           return CartItem.fromMap(data!, documentId);
         });
   }
+
+  Future<void> updateCartQty(String cartId, int qty) async {
+    if (qty == 0) {
+      await db.removeDoc('/users/$uid/cart/$cartId');
+    } else {
+      await db.updateData(path: '/users/$uid/cart/$cartId', data: {'qty': qty});
+    }
+  }
 }

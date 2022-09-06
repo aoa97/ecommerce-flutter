@@ -4,10 +4,7 @@ import 'package:ecommerce_app/widgets/ui/main_button.dart';
 class AddToCart extends StatelessWidget {
   final void Function()? onPressed;
 
-  const AddToCart(
-    this.onPressed, {
-    Key? key,
-  }) : super(key: key);
+  const AddToCart(this.onPressed, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

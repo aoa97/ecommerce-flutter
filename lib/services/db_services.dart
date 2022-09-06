@@ -30,6 +30,10 @@ class DBServices {
     await ref.update(data);
   }
 
+  Future<void> removeDoc(String path) async {
+    await _fireStore.doc(path).delete();
+  }
+
   Future<List> getColDocs({
     required String path,
     required Function(Map<String, dynamic> data, String id) builder,
