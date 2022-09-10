@@ -3,7 +3,6 @@ import 'package:ecommerce_app/models/user_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ecommerce_app/utils/routes.dart';
 import 'package:ecommerce_app/utils/routing.dart';
 import 'package:ecommerce_app/controllers/db_controller.dart';
 import 'package:ecommerce_app/modules/auth/auth_page.dart';

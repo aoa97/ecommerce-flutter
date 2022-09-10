@@ -1,18 +1,35 @@
+import 'package:ecommerce_app/controllers/db_controller.dart';
+import 'package:ecommerce_app/models/user_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/models/cart_item_model.dart';
 import 'package:ecommerce_app/widgets/layout/product/product_card.dart';
 import 'package:ecommerce_app/widgets/ui/qty_counter.dart';
+import 'package:provider/provider.dart';
 
 class CartListItem extends StatelessWidget {
   final CartItem item;
 
-  const CartListItem(
-    this.item, {
-    Key? key,
-  }) : super(key: key);
+  const CartListItem(this.item, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final isFav =
+        Provider.of<UserData>(context).favorites.contains(item.productId);
+
+    _navigate() {}
+
+    _removeFromCart() {
+      DB.instance.removeCartItem(item.id!);
+    }
+
+    _toggleFavorite() {
+      if (isFav) {
+        DB.instance.removeFavorite(item.productId);
+      } else {
+        DB.instance.addFavorite(item.productId);
+      }
+    }
+
     return ProductCard(
       imageUrl: item.imageUrl,
       child: Column(
@@ -76,13 +93,17 @@ class CartListItem extends StatelessWidget {
                     ),
                   ),
                   itemBuilder: (_) => [
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 1,
-                          child: Text("Add to favorites"),
+                          onTap: _toggleFavorite,
+                          child: Text(
+                            isFav ? "Remove to favorites" : "Add to favorites",
+                          ),
                         ),
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 2,
-                          child: Text("Delete from the list"),
+                          onTap: _removeFromCart,
+                          child: const Text("Delete from the list"),
                         ),
                       ])
             ],

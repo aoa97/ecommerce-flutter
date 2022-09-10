@@ -50,12 +50,12 @@ class Product {
   }) {
     return Product(
       id: documentId,
-      title: map['title'] ?? '',
-      category: map['category'] ?? '',
-      imageUrl: map['imageUrl'] ?? '',
-      price: map['price'].toDouble() ?? 0, // Explicitly casting
-      discount: map['discount'] ?? 0,
-      rate: map['rate'].toDouble() ?? 0,
+      title: map['title'],
+      category: map['category'],
+      imageUrl: map['imageUrl'],
+      price: map['price'].toDouble(), // Explicitly casting
+      discount: map['discount'],
+      rate: map['rate'].toDouble(),
       colors: List.from(map['colors']),
       sizes: List.from(map['sizes']),
       isFavorite: isFavorite ?? false,
