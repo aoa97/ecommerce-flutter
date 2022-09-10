@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/models/cart_item_model.dart';
 import 'package:ecommerce_app/models/user_data_model.dart';
+import 'package:ecommerce_app/providers/gobal_settings_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -26,6 +27,7 @@ class LandingPage extends StatelessWidget {
             value: DB.instance.getUserCart(),
             initialData: const [],
           ),
+          ChangeNotifierProvider<GlobalSettings>.value(value: GlobalSettings())
         ],
         child: const Navigator(onGenerateRoute: onGenerateAuthenticated),
       );

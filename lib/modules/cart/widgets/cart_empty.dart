@@ -5,13 +5,15 @@ class CartEmpty extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Flexible(
-      child: Center(
-        child: Text(
-          "Your Cart List is Empty",
-          style: Theme.of(context).textTheme.headline3,
+    return Flex(direction: Axis.vertical, children: [
+      Flexible(
+        child: Center(
+          child: Text(
+            "Your Cart List is Empty",
+            style: Theme.of(context).textTheme.headline3,
+          ),
         ),
       ),
-    );
+    ]);
   }
 }

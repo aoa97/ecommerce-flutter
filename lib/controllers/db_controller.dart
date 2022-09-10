@@ -93,6 +93,14 @@ class DB {
         });
   }
 
+  Stream<Product> getProductById(String id) {
+    return db.documentsStream(
+        path: 'products/$id',
+        builder: (Map<String, dynamic>? data, String documentId) {
+          return Product.fromMap(data!, documentId);
+        });
+  }
+
   Future<void> addFavorite(String productId) async {
     await db.updateData(path: '/users/$uid', data: {
       'favorites': FieldValue.arrayUnion([productId])

@@ -35,8 +35,8 @@ Route<dynamic>? onGenerateAuthenticated(RouteSettings settings) {
       final title = settings.arguments as String;
       return MaterialPageRoute(builder: (_) => CategoryDetailsPage(title));
     case AppRoutes.productPageRoute:
-      final product = settings.arguments as Product;
-      return MaterialPageRoute(builder: (_) => ProductPage(product));
+      final id = settings.arguments as String;
+      return MaterialPageRoute(builder: (_) => ProductPage(id));
     default:
       return MaterialPageRoute(builder: (_) => const MainTab());
   }
@@ -45,8 +45,8 @@ Route<dynamic>? onGenerateAuthenticated(RouteSettings settings) {
 Route<dynamic>? onGenerateShopStack(RouteSettings settings) {
   switch (settings.name) {
     case AppRoutes.productPageRoute:
-      final product = settings.arguments as Product;
-      return MaterialPageRoute(builder: (_) => ProductPage(product));
+      final id = settings.arguments as String;
+      return MaterialPageRoute(builder: (_) => ProductPage(id));
     case AppRoutes.categoryDetailsRoute:
       final title = settings.arguments as String;
       return MaterialPageRoute(builder: (_) => CategoryDetailsPage(title));

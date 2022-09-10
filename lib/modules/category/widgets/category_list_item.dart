@@ -15,7 +15,6 @@ class CategoryListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final userState = Provider.of<UserData>(context);
     final isFav = userState.favorites.contains(item.id);
 
@@ -30,7 +29,7 @@ class CategoryListItem extends StatelessWidget {
     _navigate() {
       Navigator.of(context).pushNamed(
         AppRoutes.productPageRoute,
-        arguments: item,
+        arguments: item.id,
       );
     }
 

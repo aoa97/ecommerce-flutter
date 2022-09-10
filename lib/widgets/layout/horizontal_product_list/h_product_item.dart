@@ -31,7 +31,7 @@ class HProductItem extends StatelessWidget {
       Navigator.pushNamed(
         context,
         AppRoutes.productPageRoute,
-        arguments: product,
+        arguments: product.id,
       );
     }
 

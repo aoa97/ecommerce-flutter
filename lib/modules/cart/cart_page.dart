@@ -1,11 +1,9 @@
-import 'package:ecommerce_app/controllers/db_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:ecommerce_app/models/cart_item_model.dart';
-import 'package:ecommerce_app/models/product_model.dart';
 import 'package:ecommerce_app/modules/cart/widgets/cart_bottom_section.dart';
 import 'package:ecommerce_app/modules/cart/widgets/cart_empty.dart';
-import 'package:flutter/material.dart';
 import 'package:ecommerce_app/modules/cart/widgets/cart_list.dart';
-import 'package:provider/provider.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({Key? key}) : super(key: key);

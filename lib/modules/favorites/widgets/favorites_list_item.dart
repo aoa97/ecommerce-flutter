@@ -1,5 +1,5 @@
-import 'package:ecommerce_app/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:ecommerce_app/utils/routes.dart';
 import 'package:ecommerce_app/controllers/db_controller.dart';
 import 'package:ecommerce_app/models/cart_item_model.dart';
 import 'package:ecommerce_app/widgets/ui/main_messaage.dart';
@@ -10,10 +10,7 @@ import 'package:ecommerce_app/widgets/layout/product/product_card.dart';
 class FavoritesListItem extends StatelessWidget {
   final Product item;
 
-  const FavoritesListItem(
-    this.item, {
-    Key? key,
-  }) : super(key: key);
+  const FavoritesListItem(this.item, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +20,7 @@ class FavoritesListItem extends StatelessWidget {
       Navigator.pushNamed(
         context,
         AppRoutes.productPageRoute,
-        arguments: item,
+        arguments: item.id,
       );
     }
 
